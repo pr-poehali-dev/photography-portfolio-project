@@ -13,6 +13,10 @@ const photos = [
   { id: 7, src: "https://cdn.poehali.dev/projects/07419fe2-c15f-4811-acad-127575893204/bucket/8a783e59-fe77-475b-aaff-cb85f48196f8.jpg" },
   { id: 8, src: "https://cdn.poehali.dev/projects/07419fe2-c15f-4811-acad-127575893204/bucket/ba996ddd-2fc9-4e68-b9f4-3539ccf9b265.jpg" },
   { id: 9, src: "https://cdn.poehali.dev/projects/07419fe2-c15f-4811-acad-127575893204/bucket/545a253b-a068-40a7-a57c-ef50376bdd58.jpg" },
+  { id: 10, src: "https://cdn.poehali.dev/projects/07419fe2-c15f-4811-acad-127575893204/bucket/7102416d-9d05-48ca-8566-36a86a0368b8.jpg" },
+  { id: 11, src: "https://cdn.poehali.dev/projects/07419fe2-c15f-4811-acad-127575893204/bucket/82c62548-fa32-451e-bb51-a741ff8be2e5.jpg" },
+  { id: 12, src: "https://cdn.poehali.dev/projects/07419fe2-c15f-4811-acad-127575893204/bucket/212209cc-7c50-49a7-8c71-dc43804d3168.jpg" },
+  { id: 13, src: "https://cdn.poehali.dev/projects/07419fe2-c15f-4811-acad-127575893204/bucket/4d8c170a-5777-493c-8988-4b31f9675df6.jpg" },
 ];
 
 const navLinks = [
