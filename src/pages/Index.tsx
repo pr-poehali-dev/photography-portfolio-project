@@ -59,7 +59,7 @@ const Index = () => {
           className="font-display text-2xl tracking-[0.15em] font-light"
           style={{ color: TEXT }}
         >
-          WKIDTAG
+          ИВАН <span className="opacity-40 text-lg">(WKIDTAG)</span>
         </a>
 
         <ul className="hidden md:flex gap-10">
