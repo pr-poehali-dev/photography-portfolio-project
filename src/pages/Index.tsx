@@ -1,14 +1,18 @@
 import { useState, useEffect, useRef } from "react";
 import Icon from "@/components/ui/icon";
 
-const HERO_IMG = "https://cdn.poehali.dev/projects/07419fe2-c15f-4811-acad-127575893204/bucket/0aeb7adb-2cff-49f8-8f13-80914befb9f8.jpg";
+const HERO_IMG = "https://cdn.poehali.dev/projects/07419fe2-c15f-4811-acad-127575893204/bucket/1016ebb7-a0ac-4e31-a929-d8b9e7645d3c.jpg";
 
 const photos = [
-  { id: 1, src: "https://cdn.poehali.dev/projects/07419fe2-c15f-4811-acad-127575893204/bucket/4021305e-28de-44b0-95df-1945c53e003f.jpg", category: "Авто" },
-  { id: 2, src: "https://cdn.poehali.dev/projects/07419fe2-c15f-4811-acad-127575893204/bucket/e4e5e417-156e-4fd8-be15-a645d1e84f16.jpg", category: "Авто" },
-  { id: 3, src: "https://cdn.poehali.dev/projects/07419fe2-c15f-4811-acad-127575893204/bucket/545a253b-a068-40a7-a57c-ef50376bdd58.jpg", category: "Стрит" },
-  { id: 4, src: "https://cdn.poehali.dev/projects/07419fe2-c15f-4811-acad-127575893204/bucket/25165711-c0fb-4914-85b1-c4de1b0d0bd3.JPG", category: "Авто" },
-  { id: 5, src: "https://cdn.poehali.dev/projects/07419fe2-c15f-4811-acad-127575893204/bucket/0aeb7adb-2cff-49f8-8f13-80914befb9f8.jpg", category: "Стрит" },
+  { id: 1, src: "https://cdn.poehali.dev/projects/07419fe2-c15f-4811-acad-127575893204/bucket/4021305e-28de-44b0-95df-1945c53e003f.jpg" },
+  { id: 2, src: "https://cdn.poehali.dev/projects/07419fe2-c15f-4811-acad-127575893204/bucket/e4e5e417-156e-4fd8-be15-a645d1e84f16.jpg" },
+  { id: 3, src: "https://cdn.poehali.dev/projects/07419fe2-c15f-4811-acad-127575893204/bucket/25165711-c0fb-4914-85b1-c4de1b0d0bd3.JPG" },
+  { id: 4, src: "https://cdn.poehali.dev/projects/07419fe2-c15f-4811-acad-127575893204/bucket/0aeb7adb-2cff-49f8-8f13-80914befb9f8.jpg" },
+  { id: 5, src: "https://cdn.poehali.dev/projects/07419fe2-c15f-4811-acad-127575893204/bucket/6bf6c2b2-b7e5-4c80-aff4-93090d33e016.jpg" },
+  { id: 6, src: "https://cdn.poehali.dev/projects/07419fe2-c15f-4811-acad-127575893204/bucket/304d3b15-c223-4edd-958a-810d8151f560.jpg" },
+  { id: 7, src: "https://cdn.poehali.dev/projects/07419fe2-c15f-4811-acad-127575893204/bucket/8a783e59-fe77-475b-aaff-cb85f48196f8.jpg" },
+  { id: 8, src: "https://cdn.poehali.dev/projects/07419fe2-c15f-4811-acad-127575893204/bucket/ba996ddd-2fc9-4e68-b9f4-3539ccf9b265.jpg" },
+  { id: 9, src: "https://cdn.poehali.dev/projects/07419fe2-c15f-4811-acad-127575893204/bucket/545a253b-a068-40a7-a57c-ef50376bdd58.jpg" },
 ];
 
 const navLinks = [
@@ -18,10 +22,12 @@ const navLinks = [
   { label: "Контакты", href: "#contact" },
 ];
 
+const BG = "#f5f0e8";
+const TEXT = "#1a1410";
+
 const Index = () => {
   const [activeSection, setActiveSection] = useState("home");
   const [menuOpen, setMenuOpen] = useState(false);
-  const [filter, setFilter] = useState<"Все" | "Авто" | "Стрит">("Все");
   const heroRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
@@ -41,16 +47,17 @@ const Index = () => {
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
-  const filteredPhotos =
-    filter === "Все" ? photos : photos.filter((p) => p.category === filter);
-
   return (
-    <div className="bg-[#100c07] min-h-screen text-[#ede4d8]">
+    <div style={{ backgroundColor: BG, color: TEXT }} className="min-h-screen">
       {/* NAV */}
-      <nav className="fixed top-0 left-0 right-0 z-50 flex items-center justify-between px-8 py-6">
+      <nav
+        style={{ backgroundColor: BG }}
+        className="fixed top-0 left-0 right-0 z-50 flex items-center justify-between px-8 py-5 border-b border-stone-200"
+      >
         <a
           href="#home"
-          className="font-display text-2xl tracking-[0.15em] text-white font-light"
+          className="font-display text-2xl tracking-[0.15em] font-light"
+          style={{ color: TEXT }}
         >
           WKIDTAG
         </a>
@@ -60,11 +67,11 @@ const Index = () => {
             <li key={link.href}>
               <a
                 href={link.href}
-                className={`nav-link font-body text-xs tracking-[0.2em] uppercase transition-opacity ${
-                  activeSection === link.href.slice(1)
-                    ? "opacity-100"
-                    : "opacity-40 hover:opacity-100"
-                }`}
+                className="nav-link font-body text-xs tracking-[0.2em] uppercase transition-opacity"
+                style={{
+                  color: TEXT,
+                  opacity: activeSection === link.href.slice(1) ? 1 : 0.35,
+                }}
               >
                 {link.label}
               </a>
@@ -73,7 +80,8 @@ const Index = () => {
         </ul>
 
         <button
-          className="md:hidden text-white"
+          style={{ color: TEXT }}
+          className="md:hidden"
           onClick={() => setMenuOpen(!menuOpen)}
         >
           <Icon name={menuOpen ? "X" : "Menu"} size={20} />
@@ -81,14 +89,18 @@ const Index = () => {
       </nav>
 
       {menuOpen && (
-        <div className="fixed inset-0 z-40 bg-[#100c07]/97 flex items-center justify-center">
+        <div
+          style={{ backgroundColor: BG }}
+          className="fixed inset-0 z-40 flex items-center justify-center"
+        >
           <ul className="flex flex-col gap-10 text-center">
             {navLinks.map((link) => (
               <li key={link.href}>
                 <a
                   href={link.href}
                   onClick={() => setMenuOpen(false)}
-                  className="font-display text-4xl font-light tracking-widest text-white"
+                  className="font-display text-4xl font-light tracking-widest"
+                  style={{ color: TEXT }}
                 >
                   {link.label}
                 </a>
@@ -108,73 +120,53 @@ const Index = () => {
           className="absolute inset-0 bg-cover bg-center"
           style={{ backgroundImage: `url(${HERO_IMG})` }}
         />
-        <div className="absolute inset-0 bg-gradient-to-t from-[#100c07] via-[#100c07]/50 to-transparent" />
+        <div
+          className="absolute inset-0"
+          style={{
+            background: `linear-gradient(to top, ${BG} 0%, ${BG}88 20%, transparent 60%)`,
+          }}
+        />
 
         <div className="relative z-10">
-          <p className="animate-fade-in-up delay-100 font-body text-xs tracking-[0.4em] uppercase text-white/50 mb-4">
-            Фотограф · Авто & Стрит культура
+          <p className="animate-fade-in-up delay-100 font-body text-xs tracking-[0.4em] uppercase mb-4" style={{ color: TEXT, opacity: 0.5 }}>
+            Автофотограф · Москва
           </p>
-          <h1 className="animate-fade-in-up delay-200 font-display text-[18vw] md:text-[10vw] leading-none font-light tracking-tight text-white">
+          <h1 className="animate-fade-in-up delay-200 font-display text-[18vw] md:text-[10vw] leading-none font-light tracking-tight" style={{ color: TEXT }}>
             WKIDTAG
           </h1>
-          <p className="animate-fade-in-up delay-400 font-body text-xs tracking-[0.3em] uppercase text-white/40 mt-4">
-            2024
+          <p className="animate-fade-in-up delay-400 font-body text-xs tracking-[0.3em] uppercase mt-4" style={{ color: TEXT, opacity: 0.35 }}>
+            2025
           </p>
         </div>
 
         <div className="absolute bottom-8 left-1/2 -translate-x-1/2 animate-bounce">
-          <Icon name="ChevronDown" size={16} className="text-white/30" />
+          <Icon name="ChevronDown" size={16} style={{ color: TEXT, opacity: 0.3 }} />
         </div>
       </section>
 
       {/* WORKS */}
       <section id="works" className="px-8 md:px-16 py-24">
-        <div className="flex flex-col md:flex-row md:items-center justify-between mb-16 gap-6">
-          <div>
-            <p className="font-body text-xs tracking-[0.4em] uppercase text-white/30 mb-2">
-              02 / Портфолио
-            </p>
-            <h2 className="font-display text-5xl md:text-7xl font-light text-white">
-              Работы
-            </h2>
-          </div>
-
-          <div className="flex gap-1">
-            {(["Все", "Авто", "Стрит"] as const).map((f) => (
-              <button
-                key={f}
-                onClick={() => setFilter(f)}
-                className={`px-5 py-2 font-body text-xs tracking-[0.2em] uppercase border transition-all ${
-                  filter === f
-                    ? "border-white text-white"
-                    : "border-white/10 text-white/30 hover:border-white/30 hover:text-white/60"
-                }`}
-              >
-                {f}
-              </button>
-            ))}
-          </div>
+        <div className="mb-16">
+          <p className="font-body text-xs tracking-[0.4em] uppercase mb-2" style={{ color: TEXT, opacity: 0.35 }}>
+            02 / Портфолио
+          </p>
+          <h2 className="font-display text-5xl md:text-7xl font-light" style={{ color: TEXT }}>
+            Работы
+          </h2>
         </div>
 
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-3">
-          {filteredPhotos.map((photo, i) => (
+          {photos.map((photo, i) => (
             <div
               key={photo.id}
-              className={`photo-card overflow-hidden cursor-pointer ${
-                i === 0 ? "md:col-span-2" : ""
-              }`}
+              className={`photo-card overflow-hidden cursor-pointer ${i === 0 ? "md:col-span-2" : ""}`}
             >
               <div className="relative overflow-hidden">
                 <img
                   src={photo.src}
-                  alt={photo.category}
-                  className={`w-full object-cover grayscale hover:grayscale-0 transition-all duration-700 ${
-                    i === 0 ? "h-[60vh]" : "h-[45vh]"
-                  }`}
+                  alt="Авто"
+                  className={`w-full object-cover transition-all duration-700 ${i === 0 ? "h-[65vh]" : "h-[45vh]"}`}
                 />
-                <span className="absolute bottom-4 left-4 font-body text-xs tracking-[0.25em] uppercase text-white/60">
-                  {photo.category}
-                </span>
               </div>
             </div>
           ))}
@@ -182,43 +174,44 @@ const Index = () => {
       </section>
 
       {/* ABOUT */}
-      <section id="about" className="px-8 md:px-16 py-24 border-t border-white/5">
+      <section id="about" className="px-8 md:px-16 py-24 border-t border-stone-200">
         <div className="max-w-5xl">
-          <p className="font-body text-xs tracking-[0.4em] uppercase text-white/30 mb-2">
+          <p className="font-body text-xs tracking-[0.4em] uppercase mb-2" style={{ color: TEXT, opacity: 0.35 }}>
             03 / Обо мне
           </p>
-          <h2 className="font-display text-5xl md:text-7xl font-light mb-16 text-white">
+          <h2 className="font-display text-5xl md:text-7xl font-light mb-16" style={{ color: TEXT }}>
             Обо мне
           </h2>
 
           <div className="grid md:grid-cols-2 gap-16 items-start">
             <div>
-              <p className="font-display text-2xl md:text-3xl font-light leading-relaxed text-white/90 mb-8 italic">
-                «Я снимаю то, что движется — машины, улицы, людей в потоке города.»
+              <p className="font-display text-2xl md:text-3xl font-light leading-relaxed mb-8 italic" style={{ color: TEXT, opacity: 0.85 }}>
+                «Я снимаю машины — в движении, на выставках, в городе.»
               </p>
-              <p className="font-body text-sm leading-relaxed text-white/50 mb-6">
-                Меня зовут Wkidtag — я фотограф, влюблённый в автомобильную и стрит культуру. Каждый кадр для меня — это момент, который живёт между движением и остановкой.
+              <p className="font-body text-sm leading-relaxed mb-6" style={{ color: TEXT, opacity: 0.55 }}>
+                Меня зовут Wkidtag — я автофотограф из Москвы. Снимаю автомобили на треках, в городе, на закате и на автовыставках. Каждый кадр — это характер машины, пойманный в нужный момент.
               </p>
-              <p className="font-body text-sm leading-relaxed text-white/50">
-                Снимаю авто на треках, в городе, на закате и на автовыставках. Ловлю жизнь улиц — граффити, скейтеры, суету переулков. Стиль — контрастный, атмосферный, без лишнего.
+              <p className="font-body text-sm leading-relaxed" style={{ color: TEXT, opacity: 0.55 }}>
+                Стиль — атмосферный, детальный, с вниманием к свету и форме. Без лишнего.
               </p>
             </div>
 
             <div className="space-y-6">
               {[
-                { label: "Специализация", value: "Авто / Стрит культура" },
+                { label: "Специализация", value: "Автофотография" },
                 { label: "Формат", value: "Фото, репортаж, коммерческая съёмка" },
                 { label: "Работаю с", value: "2025 года" },
                 { label: "Локация", value: "Москва" },
               ].map((item) => (
                 <div
                   key={item.label}
-                  className="flex justify-between items-start border-b border-white/10 pb-4"
+                  className="flex justify-between items-start pb-4"
+                  style={{ borderBottom: "1px solid rgba(26,20,16,0.12)" }}
                 >
-                  <span className="font-body text-xs tracking-[0.2em] uppercase text-white/30">
+                  <span className="font-body text-xs tracking-[0.2em] uppercase" style={{ color: TEXT, opacity: 0.35 }}>
                     {item.label}
                   </span>
-                  <span className="font-body text-sm text-white/80 text-right">
+                  <span className="font-body text-sm text-right" style={{ color: TEXT, opacity: 0.8 }}>
                     {item.value}
                   </span>
                 </div>
@@ -229,17 +222,17 @@ const Index = () => {
       </section>
 
       {/* CONTACT */}
-      <section id="contact" className="px-8 md:px-16 py-24 border-t border-white/5">
+      <section id="contact" className="px-8 md:px-16 py-24 border-t border-stone-200">
         <div className="max-w-2xl">
-          <p className="font-body text-xs tracking-[0.4em] uppercase text-white/30 mb-2">
+          <p className="font-body text-xs tracking-[0.4em] uppercase mb-2" style={{ color: TEXT, opacity: 0.35 }}>
             04 / Контакты
           </p>
-          <h2 className="font-display text-5xl md:text-7xl font-light mb-16 text-white">
+          <h2 className="font-display text-5xl md:text-7xl font-light mb-16" style={{ color: TEXT }}>
             Связаться
           </h2>
 
-          <p className="font-body text-sm text-white/50 mb-12 leading-relaxed">
-            Если хочешь снять авто, коллаборацию или просто поговорить о стрите — пиши.
+          <p className="font-body text-sm mb-12 leading-relaxed" style={{ color: TEXT, opacity: 0.55 }}>
+            Хочешь снять своё авто или сотрудничество — пиши.
           </p>
 
           <div className="space-y-6">
@@ -249,21 +242,24 @@ const Index = () => {
               rel="noopener noreferrer"
               className="flex items-center gap-6 group"
             >
-              <div className="w-12 h-12 border border-white/10 flex items-center justify-center group-hover:border-white/50 transition-all">
-                <Icon name="Send" size={16} className="text-white/40 group-hover:text-white/80 transition-colors" />
+              <div
+                className="w-12 h-12 flex items-center justify-center transition-all"
+                style={{ border: "1px solid rgba(26,20,16,0.15)" }}
+              >
+                <Icon name="Send" size={16} style={{ color: TEXT, opacity: 0.4 }} />
               </div>
               <div>
-                <p className="font-body text-xs tracking-[0.2em] uppercase text-white/30 mb-1">
+                <p className="font-body text-xs tracking-[0.2em] uppercase mb-1" style={{ color: TEXT, opacity: 0.35 }}>
                   Telegram
                 </p>
-                <p className="font-body text-lg text-white/80 group-hover:text-white transition-colors">
+                <p className="font-body text-lg" style={{ color: TEXT }}>
                   @wkidtag
                 </p>
               </div>
-              <Icon name="ArrowUpRight" size={16} className="ml-auto text-white/20 group-hover:text-white/60 transition-all" />
+              <Icon name="ArrowUpRight" size={16} className="ml-auto transition-all" style={{ color: TEXT, opacity: 0.25 }} />
             </a>
 
-            <div className="h-px bg-white/5" />
+            <div style={{ height: 1, backgroundColor: "rgba(26,20,16,0.08)" }} />
 
             <a
               href="https://instagram.com/wkidtag"
@@ -271,30 +267,36 @@ const Index = () => {
               rel="noopener noreferrer"
               className="flex items-center gap-6 group"
             >
-              <div className="w-12 h-12 border border-white/10 flex items-center justify-center group-hover:border-white/50 transition-all">
-                <Icon name="Instagram" size={16} className="text-white/40 group-hover:text-white/80 transition-colors" />
+              <div
+                className="w-12 h-12 flex items-center justify-center transition-all"
+                style={{ border: "1px solid rgba(26,20,16,0.15)" }}
+              >
+                <Icon name="Instagram" size={16} style={{ color: TEXT, opacity: 0.4 }} />
               </div>
               <div>
-                <p className="font-body text-xs tracking-[0.2em] uppercase text-white/30 mb-1">
+                <p className="font-body text-xs tracking-[0.2em] uppercase mb-1" style={{ color: TEXT, opacity: 0.35 }}>
                   Instagram
                 </p>
-                <p className="font-body text-lg text-white/80 group-hover:text-white transition-colors">
+                <p className="font-body text-lg" style={{ color: TEXT }}>
                   @wkidtag
                 </p>
               </div>
-              <Icon name="ArrowUpRight" size={16} className="ml-auto text-white/20 group-hover:text-white/60 transition-all" />
+              <Icon name="ArrowUpRight" size={16} className="ml-auto transition-all" style={{ color: TEXT, opacity: 0.25 }} />
             </a>
           </div>
         </div>
       </section>
 
       {/* FOOTER */}
-      <footer className="px-8 md:px-16 py-8 border-t border-white/5 flex flex-col md:flex-row justify-between items-center gap-4">
-        <span className="font-display text-sm text-white/20 tracking-widest">
+      <footer
+        className="px-8 md:px-16 py-8 flex flex-col md:flex-row justify-between items-center gap-4"
+        style={{ borderTop: "1px solid rgba(26,20,16,0.08)" }}
+      >
+        <span className="font-display text-sm tracking-widest" style={{ color: TEXT, opacity: 0.25 }}>
           WKIDTAG
         </span>
-        <span className="font-body text-xs text-white/20 tracking-[0.2em] uppercase">
-          Фотограф · 2024
+        <span className="font-body text-xs tracking-[0.2em] uppercase" style={{ color: TEXT, opacity: 0.25 }}>
+          Автофотограф · 2025
         </span>
       </footer>
     </div>
