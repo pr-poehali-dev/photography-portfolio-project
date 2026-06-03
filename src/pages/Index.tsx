@@ -1,14 +1,14 @@
 import { useState, useEffect, useRef } from "react";
 import Icon from "@/components/ui/icon";
 
-const PLACEHOLDER_IMG = "https://cdn.poehali.dev/projects/07419fe2-c15f-4811-acad-127575893204/files/ca54b72e-64ef-4af4-b574-dd83da0afb06.jpg";
+const HERO_IMG = "https://cdn.poehali.dev/projects/07419fe2-c15f-4811-acad-127575893204/bucket/0aeb7adb-2cff-49f8-8f13-80914befb9f8.jpg";
 
 const photos = [
-  { id: 1, src: PLACEHOLDER_IMG, category: "Авто" },
-  { id: 2, src: PLACEHOLDER_IMG, category: "Стрит" },
-  { id: 3, src: PLACEHOLDER_IMG, category: "Авто" },
-  { id: 4, src: PLACEHOLDER_IMG, category: "Стрит" },
-  { id: 5, src: PLACEHOLDER_IMG, category: "Авто" },
+  { id: 1, src: "https://cdn.poehali.dev/projects/07419fe2-c15f-4811-acad-127575893204/bucket/4021305e-28de-44b0-95df-1945c53e003f.jpg", category: "Авто" },
+  { id: 2, src: "https://cdn.poehali.dev/projects/07419fe2-c15f-4811-acad-127575893204/bucket/e4e5e417-156e-4fd8-be15-a645d1e84f16.jpg", category: "Авто" },
+  { id: 3, src: "https://cdn.poehali.dev/projects/07419fe2-c15f-4811-acad-127575893204/bucket/545a253b-a068-40a7-a57c-ef50376bdd58.jpg", category: "Стрит" },
+  { id: 4, src: "https://cdn.poehali.dev/projects/07419fe2-c15f-4811-acad-127575893204/bucket/25165711-c0fb-4914-85b1-c4de1b0d0bd3.JPG", category: "Авто" },
+  { id: 5, src: "https://cdn.poehali.dev/projects/07419fe2-c15f-4811-acad-127575893204/bucket/0aeb7adb-2cff-49f8-8f13-80914befb9f8.jpg", category: "Стрит" },
 ];
 
 const navLinks = [
@@ -45,7 +45,7 @@ const Index = () => {
     filter === "Все" ? photos : photos.filter((p) => p.category === filter);
 
   return (
-    <div className="bg-[#0d0d0d] min-h-screen text-white">
+    <div className="bg-[#100c07] min-h-screen text-[#ede4d8]">
       {/* NAV */}
       <nav className="fixed top-0 left-0 right-0 z-50 flex items-center justify-between px-8 py-6">
         <a
@@ -81,7 +81,7 @@ const Index = () => {
       </nav>
 
       {menuOpen && (
-        <div className="fixed inset-0 z-40 bg-[#0d0d0d]/97 flex items-center justify-center">
+        <div className="fixed inset-0 z-40 bg-[#100c07]/97 flex items-center justify-center">
           <ul className="flex flex-col gap-10 text-center">
             {navLinks.map((link) => (
               <li key={link.href}>
@@ -106,9 +106,9 @@ const Index = () => {
       >
         <div
           className="absolute inset-0 bg-cover bg-center"
-          style={{ backgroundImage: `url(${PLACEHOLDER_IMG})` }}
+          style={{ backgroundImage: `url(${HERO_IMG})` }}
         />
-        <div className="absolute inset-0 bg-gradient-to-t from-[#0d0d0d] via-[#0d0d0d]/50 to-transparent" />
+        <div className="absolute inset-0 bg-gradient-to-t from-[#100c07] via-[#100c07]/50 to-transparent" />
 
         <div className="relative z-10">
           <p className="animate-fade-in-up delay-100 font-body text-xs tracking-[0.4em] uppercase text-white/50 mb-4">
